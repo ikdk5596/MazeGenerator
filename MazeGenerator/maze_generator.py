@@ -1,10 +1,16 @@
+import argparse
 from PIL import Image
 import numpy as np
 
-print("Maze-Generator using Prim's algoritm.")
 
-width = input("Please insert the width of the resulting Image: ")/2-1
-height = input("Please insert the height of the resulting Image: ")/2-1
+parser = argparse.ArgumentParser()
+parser.add_argument("width", help = "The width of the resulting Image in Pixels", type=int)
+parser.add_argument("height", help = "The height of the resulting Image in Pixels", type=int)
+parser.add_argument("--output", help = "The name of the output-file", type=str)
+args=parser.parse_args()
+
+width = args.width
+height =  args.height
 
 print("Starting to compute the maze...")
 
@@ -81,7 +87,10 @@ for x in range(0,len(visitedArr)):
             img.putpixel((x*2+2,y*2+1),(255,255,255))
         if(wallArr[x,y,3]==1):
             img.putpixel((x*2+1,y*2+2),(255,255,255))
-img.save('output.gif', interpolation = 'none')
+output = "output.jpg"
+if args.output:
+    output = args.output
+img.save(output, interpolation = 'none')
 img.show()
 print("Finished!")
 
