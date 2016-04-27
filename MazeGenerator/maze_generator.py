@@ -48,7 +48,7 @@ while(not finished):
     if w==2:
         xDest = xDest + 1
     if w==3:
-        yDest = yDest + 2
+        yDest = yDest + 1
     if(xDest >= 0 and yDest >= 0 and xDest<width and yDest<height) and ((visitedArr[x,y]+visitedArr[xDest,yDest]) == 1):#Exakt eine Zelle Besucht
         #print "Visited: ",visitedArr[x,y]," ",visitedArr[xDest,yDest]
         wallArr[x,y,w] = 1
