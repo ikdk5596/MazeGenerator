@@ -72,9 +72,7 @@ img = Image.new("RGB",(width*2+1,height*2+1),"black")
 for x in range(0,len(visitedArr)):
     for y in range(0,len(visitedArr[x])):
         if(visitedArr[x,y]==1):
-            img.putpixel((x * 2 +1,y * 2 +1),(0,255,255))
-        else:
-            img.putpixel((x * 2 +1,y * 2 +1),(255,0,0))
+            img.putpixel((x * 2 +1,y * 2 +1),(255,255,255))
         if(wallArr[x,y,0]==1):
             img.putpixel((x*2,y*2+1),(255,255,255))
         if(wallArr[x,y,1]==1):
@@ -83,7 +81,6 @@ for x in range(0,len(visitedArr)):
             img.putpixel((x*2+2,y*2+1),(255,255,255))
         if(wallArr[x,y,3]==1):
             img.putpixel((x*2+1,y*2+2),(255,255,255))
-img.putpixel((1,height+1),(0,0,255))
 img.save('output.gif', interpolation = 'none')
 img.show()
 print("Finished!")
