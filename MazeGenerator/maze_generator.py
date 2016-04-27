@@ -43,25 +43,25 @@ while(not finished):
     yDest=y
     if(w==0):
         xDest = xDest - 1
-    elif w==1:
+    if w==1:
         yDest = yDest - 1
-    elif w==2:
+    if w==2:
         xDest = xDest + 1
-    elif w==3:
+    if w==3:
         yDest = yDest + 2
-    if(xDest >= 0 and yDest >= 0 and xDest<width and yDest<height) and (visitedArr[x,y]+visitedArr[xDest,yDest] == 1):#Exakt eine Zelle Besucht
+    if(xDest >= 0 and yDest >= 0 and xDest<width and yDest<height) and ((visitedArr[x,y]+visitedArr[xDest,yDest]) == 1):#Exakt eine Zelle Besucht
         #print "Visited: ",visitedArr[x,y]," ",visitedArr[xDest,yDest]
         wallArr[x,y,w] = 1
         visitedArr[xDest,yDest] = 1    
-        if(xDest-1>=0):
-            walls.append((xDest,yDest,0))
-        if(yDest-1>=0):
-            walls.append((xDest,yDest,1))
-        if(xDest+1<width):
-            walls.append((xDest,yDest,2))
-        if(yDest+1<height):
-            walls.append((xDest,yDest,3))
-   del walls[i]
+        #if(xDest-1>=0):
+        walls.append((xDest,yDest,0))
+        #if(yDest-1>=0):
+        walls.append((xDest,yDest,1))
+        #if(xDest+1<width):
+        walls.append((xDest,yDest,2))
+        #if(yDest+1<height):
+        walls.append((xDest,yDest,3))
+    del walls[i]
     if(len(walls)==0):
         finished = True
     #else:
