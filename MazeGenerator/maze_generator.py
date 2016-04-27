@@ -51,8 +51,8 @@ while(not finished):
         yDest = yDest + 2
     if(xDest >= 0 and yDest >= 0 and xDest<width and yDest<height) and (visitedArr[x,y]+visitedArr[xDest,yDest] == 1):#Exakt eine Zelle Besucht
         #print "Visited: ",visitedArr[x,y]," ",visitedArr[xDest,yDest]
-        visitedArr[xDest,yDest] = 1    
         wallArr[x,y,w] = 1
+        visitedArr[xDest,yDest] = 1    
         if(xDest-1>=0):
             walls.append((xDest,yDest,0))
         if(yDest-1>=0):
@@ -61,9 +61,7 @@ while(not finished):
             walls.append((xDest,yDest,2))
         if(yDest+1<height):
             walls.append((xDest,yDest,3))
-    else:
-        wallArr[x,y,w]==0
-    del walls[i]
+   del walls[i]
     if(len(walls)==0):
         finished = True
     #else:
@@ -73,7 +71,7 @@ print("Finished!\nNow plotting the maze")
 img = Image.new("RGB",(width*2+1,height*2+1),"black")
 for x in range(0,len(visitedArr)):
     for y in range(0,len(visitedArr[x])):
-        if(visitedArr[x,y]):
+        if(visitedArr[x,y]==1):
             img.putpixel((x * 2 +1,y * 2 +1),(0,255,255))
         else:
             img.putpixel((x * 2 +1,y * 2 +1),(255,0,0))
