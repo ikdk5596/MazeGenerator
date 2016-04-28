@@ -6,11 +6,12 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("width", help = "The width of the resulting Image in Pixels", type=int)
 parser.add_argument("height", help = "The height of the resulting Image in Pixels", type=int)
-parser.add_argument("--output", help = "The name of the output-file", type=str)
+parser.add_argument("-o","--output", help = "The name of the output-file", type=str)
+parser.add_argument("-s","--space", help = "Creates a rectangle with the specified coordinates (x1,y1,x2,y2)[in pixels] in which the maze will not be generated", nargs = 4, type=int)
 args=parser.parse_args()
 
-width = args.width
-height =  args.height
+width = args.width/2
+height =  args.height/2
 
 print("Starting to compute the maze...")
 
@@ -20,6 +21,14 @@ visitedArr = np.zeros((width,height))
 # 0 z 2 
 #   3
 walls = []
+
+
+if(args.space):
+    print(args.space[0],args.space[2])
+    print(args.space[1],args.space[3])
+    for x in range(args.space[0]/2,args.space[2]/2):
+        for y in range(args.space[1]/2,args.space[3]/2):
+            visitedArr[x,y]=2#Will be filtered later
 
 
 #walls.append((np.random.randint(0,width),np.random.randint(0,height)))
@@ -36,7 +45,6 @@ if(x+1<width):
     walls.append((x,y,2))
 if(y+1<height):
     walls.append((x,y,3))
-
 finished = False
 
 while(not finished):
@@ -87,7 +95,7 @@ for x in range(0,len(visitedArr)):
             img.putpixel((x*2+2,y*2+1),(255,255,255))
         if(wallArr[x,y,3]==1):
             img.putpixel((x*2+1,y*2+2),(255,255,255))
-output = "output.jpg"
+output = "output.png"
 if args.output:
     output = args.output
 img.save(output, interpolation = 'none')
