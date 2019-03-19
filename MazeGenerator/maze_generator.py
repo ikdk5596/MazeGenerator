@@ -10,8 +10,8 @@ parser.add_argument("-o","--output", help = "The name of the output-file", type=
 parser.add_argument("-s","--space", help = "Creates a rectangle with the specified coordinates (x1,y1,x2,y2)[in pixels] in which the maze will not be generated", nargs = 4, type=int)
 args=parser.parse_args()
 
-width = args.width/2
-height =  args.height/2
+width = int(args.width/2)
+height =  int(args.height/2)
 
 print("Starting to compute the maze...")
 
@@ -33,7 +33,7 @@ if(args.space):
 
 #walls.append((np.random.randint(0,width),np.random.randint(0,height)))
 x=0
-y=height/2
+y=int(height/2)
 wallArr[x,y,0]=1
 visitedArr[x,y]=1
 
